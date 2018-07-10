@@ -12,7 +12,9 @@ import me.hao0.wepay.annotation.Optional;
  */
 public class QrPayRequest extends PayRequest {
 
-    /**
+	private static final long serialVersionUID = 1L;
+	
+	/**
      * 商品ID
      * {@link me.hao0.wepay.model.enums.WepayField#PRODUCT_ID}
      */

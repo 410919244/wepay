@@ -49,20 +49,12 @@ public class WepayTest {
         byte[] data = Files.readAllBytes(path);
         
         wepay = WepayBuilder.newBuilder(
-                "wx000afcfee2b0af8f",
-                "5b1746c50c3487865e970588b4a8c7e9",
-                "1443511002")
-                //.certPasswd(props.getProperty("mchId"))
-                //.certs(data)
+                props.getProperty("appId"),
+                props.getProperty("appKey"),
+                props.getProperty("mchId"))
+                .certPasswd(props.getProperty("mchId"))
+                .certs(data)
                 .build();
-
-//        wepay = WepayBuilder.newBuilder(
-//                props.getProperty("appId"),
-//                props.getProperty("appKey"),
-//                props.getProperty("mchId"))
-//                //.certPasswd(props.getProperty("mchId"))
-//                //.certs(data)
-//                .build();
 
 
     }

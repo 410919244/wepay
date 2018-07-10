@@ -13,7 +13,9 @@ import java.io.Serializable;
  */
 public class PayRequest implements Serializable {
 
-    /**
+	private static final long serialVersionUID = 1L;
+
+	/**
      * 商品描述
      * {@link me.hao0.wepay.model.enums.WepayField#BODY}
      */

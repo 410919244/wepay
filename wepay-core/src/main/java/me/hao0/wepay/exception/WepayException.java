@@ -9,7 +9,9 @@ package me.hao0.wepay.exception;
  */
 public class WepayException extends RuntimeException {
 
-    /**
+	private static final long serialVersionUID = 1L;
+
+	/**
      * 当微信发生错误时，对应的错误码
      */
     private String errorCode;

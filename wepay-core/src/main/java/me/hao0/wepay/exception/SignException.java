@@ -7,7 +7,9 @@ package me.hao0.wepay.exception;
  */
 public class SignException extends RuntimeException {
 
-    public SignException() {
+	private static final long serialVersionUID = 1L;
+
+	public SignException() {
         super();
     }
 
