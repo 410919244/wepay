@@ -25,8 +25,8 @@ public class BillDetail<T extends Bill> implements Serializable {
      */
     private BillCount count;
 
-    @SuppressWarnings("unchecked")
-    private static final BillDetail EMPTY = (BillDetail)new BillDetail(Collections.emptyList(), null);
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	private static final BillDetail EMPTY = new BillDetail(Collections.emptyList(), null);
 
     public BillDetail(List<T> bills, BillCount count) {
         this.bills = bills;
@@ -49,8 +49,8 @@ public class BillDetail<T extends Bill> implements Serializable {
         this.count = count;
     }
 
-    @SuppressWarnings("unchecked")
-    public static BillDetail empty(){
+    @SuppressWarnings("rawtypes")
+	public static BillDetail empty(){
         return EMPTY;
     }
 

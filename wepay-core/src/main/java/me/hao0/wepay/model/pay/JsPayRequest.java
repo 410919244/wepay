@@ -11,6 +11,10 @@ package me.hao0.wepay.model.pay;
 public class JsPayRequest extends PayRequest {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4914745161493839575L;
+	/**
      * 用户标识
      * {@link me.hao0.wepay.model.enums.WepayField#OPEN_ID}
      */

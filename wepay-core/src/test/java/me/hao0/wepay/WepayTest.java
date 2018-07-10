@@ -47,14 +47,22 @@ public class WepayTest {
 
         Path path = Paths.get("/Users/haolin/GitHub/wepay/wepay-core/src/test/resources/cert.p12");
         byte[] data = Files.readAllBytes(path);
-
+        
         wepay = WepayBuilder.newBuilder(
-                props.getProperty("appId"),
-                props.getProperty("appKey"),
-                props.getProperty("mchId"))
+                "wx000afcfee2b0af8f",
+                "5b1746c50c3487865e970588b4a8c7e9",
+                "1443511002")
                 //.certPasswd(props.getProperty("mchId"))
                 //.certs(data)
                 .build();
+
+//        wepay = WepayBuilder.newBuilder(
+//                props.getProperty("appId"),
+//                props.getProperty("appKey"),
+//                props.getProperty("mchId"))
+//                //.certPasswd(props.getProperty("mchId"))
+//                //.certs(data)
+//                .build();
 
 
     }

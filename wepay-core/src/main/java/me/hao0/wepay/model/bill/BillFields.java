@@ -1,11 +1,10 @@
 package me.hao0.wepay.model.bill;
 
-import me.hao0.wepay.model.enums.WepayField;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import me.hao0.wepay.model.enums.WepayField;
 
 /**
  * 账单字段
