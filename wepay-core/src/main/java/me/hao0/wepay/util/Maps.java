@@ -1,7 +1,6 @@
 package me.hao0.wepay.util;
 
 import me.hao0.common.util.Strings;
-import me.hao0.common.xml.XmlReaders;
 import me.hao0.common.xml.XmlWriters;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

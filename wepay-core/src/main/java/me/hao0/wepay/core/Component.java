@@ -1,17 +1,18 @@
 package me.hao0.wepay.core;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import me.hao0.common.http.Http;
 import me.hao0.common.http.Https;
 import me.hao0.common.json.Jsons;
 import me.hao0.common.security.MD5;
 import me.hao0.common.util.Strings;
-import me.hao0.common.xml.XmlReaders;
 import me.hao0.wepay.exception.SignException;
 import me.hao0.wepay.exception.WepayException;
 import me.hao0.wepay.model.enums.WepayField;
 import me.hao0.wepay.util.Maps;
-import java.util.Map;
-import java.util.TreeMap;
+import me.hao0.wepay.util.XmlReaders;
 
 /**
  * Author: haolin
@@ -29,6 +30,17 @@ public abstract class Component {
     protected Map<String, Object> doPost(final String url, final Map<String, String> params){
         String requestBody = Maps.toXml(params);
         String resp = Http.post(url).ssl().body(requestBody).request();
+        Map<String, Object> respMap = toMap(resp.replaceAll("(\\r|\\n)", ""));
+        if (!doVerifySign(respMap)){
+            throw new SignException("微信响应内容签名非法: " + respMap);
+        }
+        return respMap;
+    }
+    
+    protected Map<String, Object> doHttpsPost(final String url, final Map<String, String> params){
+        String requestBody = Maps.toXml(params);
+        String resp = Https.post(url).body(requestBody)
+                .ssLSocketFactory(wepay.getSslSocketFactory()).request();
         Map<String, Object> respMap = toMap(resp.replaceAll("(\\r|\\n)", ""));
         if (!doVerifySign(respMap)){
             throw new SignException("微信响应内容签名非法: " + respMap);
