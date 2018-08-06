@@ -2,7 +2,7 @@
     <parent>
         <artifactId>wepay</artifactId>
         <groupId>me.hao0</groupId>
-        <version>1.3.2-SNAPSHOT</version>
+        <version>wmeimob.1.3.2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
