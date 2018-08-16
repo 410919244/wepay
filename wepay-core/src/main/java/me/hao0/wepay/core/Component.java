@@ -138,6 +138,10 @@ public abstract class Component {
      */
     protected Boolean doVerifySign(final Map<String, ?> data) {
         String actualSign = String.valueOf(data.get(WepayField.SIGN));
+        if(data.get(WepayField.SIGN) == null) {
+        	// MD 发送红包文档说有签名，实际返回没有签名字段。
+        	return true;
+        }
         Map<String, String> signingMap = filterSignParams(data);
         String expectSign = doSign(signingMap);
         return expectSign.equals(actualSign);
