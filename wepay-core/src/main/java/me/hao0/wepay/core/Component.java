@@ -99,6 +99,13 @@ public abstract class Component {
     protected void buildConfigParams(final Map<String, String> params){
         params.put(WepayField.APP_ID, wepay.getAppId());
         params.put(WepayField.MCH_ID, wepay.getMchId());
+        // 子商户
+        if(!Strings.isNullOrEmpty(wepay.getSubMchId())) {
+        	params.put(WepayField.SUB_MCH_ID, wepay.getSubMchId());
+        }
+        if(!Strings.isNullOrEmpty(wepay.getSubAppId())) {
+        	params.put(WepayField.SUB_APPID, wepay.getSubAppId());
+        }
     }
 
     /**

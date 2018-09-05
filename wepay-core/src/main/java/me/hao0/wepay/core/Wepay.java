@@ -23,7 +23,7 @@ public final class Wepay {
      * 微信APP ID
      */
     private final String appId;
-
+    
     /**
      * 微信APP Key
      */
@@ -33,6 +33,16 @@ public final class Wepay {
      * 商户ID
      */
     private final String mchId;
+    
+    /**
+     * 子商户Appid
+     */
+    private final String subAppId;
+    
+    /**
+     * 子商户ID
+     */
+    private final String subMchId;
 
     /**
      * 商户证书数据(p12)
@@ -85,6 +95,16 @@ public final class Wepay {
         this.appId = appId;
         this.appKey = appKey;
         this.mchId = mchId;
+        this.subAppId = null;
+        this.subMchId = null;
+    }
+    
+    Wepay(String appId, String appKey, String mchId, String subAppId, String subMchId){
+        this.appId = appId;
+        this.appKey = appKey;
+        this.mchId = mchId;
+        this.subAppId = subAppId;
+        this.subMchId = subMchId;
     }
 
     public String getAppId() {
@@ -99,7 +119,15 @@ public final class Wepay {
         return mchId;
     }
 
-    public byte[] getCerts() {
+    public String getSubAppId() {
+		return subAppId;
+	}
+
+	public String getSubMchId() {
+		return subMchId;
+	}
+
+	public byte[] getCerts() {
         return certs;
     }
 

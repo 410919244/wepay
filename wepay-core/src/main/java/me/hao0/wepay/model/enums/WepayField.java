@@ -55,7 +55,7 @@ public final class WepayField {
      * 微信支付分配的商户号
      */
     public static final String MCH_ID = "mch_id";
-
+    
     /**
      * 终端设备号(门店号或收银设备ID)，注意：PC网页或公众号内支付请传"WEB"
      */
@@ -356,6 +356,11 @@ public final class WepayField {
      * 账单日期
      */
     public static final String BILL_DATE = "bill_date";
+    
+    /**
+     * 服务商模式当前调起支付的小程序APPID
+     */
+    public static final String SUB_APPID = "sub_appid";
 
     /**
      * 子商户ID

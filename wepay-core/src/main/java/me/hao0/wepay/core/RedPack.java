@@ -3,6 +3,7 @@ package me.hao0.wepay.core;
 import java.util.Map;
 import java.util.TreeMap;
 
+import me.hao0.common.util.Strings;
 import me.hao0.wepay.model.enums.RedPackField;
 import me.hao0.wepay.model.redpack.RedPackGroupRequest;
 import me.hao0.wepay.model.redpack.RedPackRequest;
@@ -89,5 +90,9 @@ public class RedPack extends Component {
     private void buildConfigParams2(final Map<String, String> params){
         params.put(RedPackField.WXAPPID, wepay.getAppId());
         params.put(RedPackField.MCH_ID, wepay.getMchId());
+        if(!Strings.isNullOrEmpty(wepay.getSubMchId())) {
+        	params.put(RedPackField.SUB_APP_ID, wepay.getSubAppId());
+        	params.put(RedPackField.SUB_MCH_ID, wepay.getSubMchId());
+        }
     }
 }

@@ -19,6 +19,12 @@ public class RedPackField {
 	/** 商户号 */
 	public final static String MCH_ID = "mch_id";
 	
+	/** 触达用户的appid 为保持一直所以命名为SUB_APP_ID */
+	public final static String SUB_APP_ID = "msgappid";
+	
+	/** 子商户号 */
+	public final static String SUB_MCH_ID = "sub_mch_id";
+	
 	/** 公众账号appid */
 	public final static String WXAPPID = "wxappid";
 	

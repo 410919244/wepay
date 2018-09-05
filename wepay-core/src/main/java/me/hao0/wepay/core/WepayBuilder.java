@@ -13,9 +13,35 @@ public final class WepayBuilder {
 
     private WepayBuilder(){}
 
+    /**
+     * 普通商户
+     * @param appId
+     * @param appSecret
+     * @param mchId
+     * @return
+     * @author zJun
+     * @date 2018年9月4日 下午2:47:17
+     */
     public static WepayBuilder newBuilder(String appId, String appSecret, String mchId){
         WepayBuilder builder = new WepayBuilder();
         builder.wepay = new Wepay(appId, appSecret, mchId);
+        return builder;
+    }
+    
+    /**
+     * 特约商户
+     * @param appId
+     * @param appSecret
+     * @param mchId
+     * @param subAppId 子商户appid，没有了可传null
+     * @param subMchId
+     * @return
+     * @author zJun
+     * @date 2018年9月4日 下午2:47:24
+     */
+    public static WepayBuilder newBuilder(String appId, String appSecret, String mchId, String subAppId, String subMchId){
+        WepayBuilder builder = new WepayBuilder();
+        builder.wepay = new Wepay(appId, appSecret, mchId, subAppId, subMchId);
         return builder;
     }
 
