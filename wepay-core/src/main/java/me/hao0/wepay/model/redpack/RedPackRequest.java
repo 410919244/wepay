@@ -62,7 +62,7 @@ public class RedPackRequest implements Serializable {
 	/** 资金授权商户号 */
 	@JsonProperty(RedPackField.CONSUME_MCH_ID)
 	private String consumeMchId;
-
+	
 	/** 商户订单号 (必填) */
 	public String getMchBillno() {
 		return mchBillno;
