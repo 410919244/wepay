@@ -1,15 +1,19 @@
 package me.hao0.wepay.util;
 
-import me.hao0.common.exception.XmlException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import me.hao0.common.exception.XmlException;
 
 /**
  * 简陋的XML读取器
@@ -19,19 +23,20 @@ import java.io.UnsupportedEncodingException;
  */
 public class XmlReaders {
 
-    private static DocumentBuilder builder;
-
-    static {
-        try {
-        	// 修复XXE漏洞
-        	// 详情请参考：https://mp.weixin.qq.com/s?__biz=MzU4NDU5MjA2Mw==&mid=2247483670&idx=1&sn=77f4236ad3528ebc4e00b9203ebcbf88&chksm=fd963ec6cae1b7d07628fcf9a085af6a5415257f558c87a5fa226b20c98a5866a0a69c1bc6ed&mpshare=1&scene=1&srcid=0712cttPtcG9uUmVPWuVLGZV#rd
-        	DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
-        	dbf.setExpandEntityReferences(false);
-            builder =  dbf.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            throw new XmlException("init xml failed");
+    private static ThreadLocal<DocumentBuilder> docBuildeIns = new ThreadLocal<DocumentBuilder>() {
+        protected DocumentBuilder initialValue() {
+            try {
+            	// 修复XXE漏洞
+            	// 详情请参考：https://mp.weixin.qq.com/s?__biz=MzU4NDU5MjA2Mw==&mid=2247483670&idx=1&sn=77f4236ad3528ebc4e00b9203ebcbf88&chksm=fd963ec6cae1b7d07628fcf9a085af6a5415257f558c87a5fa226b20c98a5866a0a69c1bc6ed&mpshare=1&scene=1&srcid=0712cttPtcG9uUmVPWuVLGZV#rd
+            	DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+            	dbf.setExpandEntityReferences(false);
+            	dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING,true);
+                return DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            } catch (ParserConfigurationException e) {
+                throw new IllegalStateException("DocumentBuilder 对象初始化失败！", e);
+            }
         }
-    }
+    };
 
     private Document document;
 
@@ -52,7 +57,7 @@ public class XmlReaders {
     public static XmlReaders create(InputStream inputStream){
         XmlReaders readers = new XmlReaders();
         try {
-            readers.document = builder.parse(inputStream);
+            readers.document = docBuildeIns.get().parse(inputStream);
         } catch (Exception e) {
             throw new XmlException("Xmls create fail", e);
         }
