@@ -90,6 +90,11 @@ public final class Wepay {
      * 红包组件
      */
     private RedPack redPack;
+    
+    /**
+     * 企业支付组件
+     */
+    private Company company;
 
     Wepay(String appId, String appKey, String mchId){
         this.appId = appId;
@@ -154,6 +159,7 @@ public final class Wepay {
         notifies = new Notifies(this);
         bills = new Bills(this);
         redPack = new RedPack(this);
+        company = new Company(this);
         if (certs != null && !Strings.isNullOrEmpty(certPasswd)){
             sslSocketFactory = initSSLSocketFactory();
         }
@@ -228,5 +234,15 @@ public final class Wepay {
      */
     public RedPack redPack() {
     	return redPack;
+    }
+
+    /**
+     * 企业支付组件
+     * @return
+     * @author zJun
+     * @date 2019年4月19日 下午5:46:27
+     */
+    public Company company() {
+    	return company;
     }
 }

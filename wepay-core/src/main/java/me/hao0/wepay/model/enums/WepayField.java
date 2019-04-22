@@ -45,6 +45,9 @@ public final class WepayField {
      * 公众帐号ID
      */
     public static final String APP_ID = "appid";
+    
+    /** 公众号appid */
+    public static final String MCH_APPID = "mch_appid";
 
     /**
      * 公众帐号ID
@@ -55,6 +58,11 @@ public final class WepayField {
      * 微信支付分配的商户号
      */
     public static final String MCH_ID = "mch_id";
+    
+    /**
+     * 微信支付分配的商户号
+     */
+    public static final String MCHID = "mchid";
     
     /**
      * 终端设备号(门店号或收银设备ID)，注意：PC网页或公众号内支付请传"WEB"
@@ -110,6 +118,9 @@ public final class WepayField {
      * 商户系统内部的订单号,32个字符内、可包含字母
      */
     public static final String OUT_TRADE_NO = "out_trade_no";
+    
+    /** 商户订单号 */
+    public static final String PARTNER_TRADE_NO = "partner_trade_no";
 
     /**
      * 货币类型
@@ -450,5 +461,16 @@ public final class WepayField {
      * 支付用户零钱
      */
     public static final String REFUND_RECV_ACCOUNT = "refund_recv_accout";
+    
+    /** 校验用户姓名选项 NO_CHECK：不校验真实姓名  FORCE_CHECK：强校验真实姓名 */
+    public static final String CHECK_NAME = "check_name";
+    
+    /** 收款用户姓名 */
+    public static final String RE_USER_NAME = "re_user_name";
 
+    /** 金额 */
+    public static final String AMOUNT = "amount";
+    
+    /** 企业付款备注 */
+    public static final String DESC = "desc";
 }

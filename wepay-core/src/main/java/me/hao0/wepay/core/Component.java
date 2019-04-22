@@ -107,6 +107,22 @@ public abstract class Component {
         	params.put(WepayField.SUB_APPID, wepay.getSubAppId());
         }
     }
+    
+    /**
+     * 企业支付构建配置参数
+     * @param params 参数
+     */
+    protected void buildConfigCompanyParams(final Map<String, String> params){
+        params.put(WepayField.MCH_APPID, wepay.getAppId());
+        params.put(WepayField.MCHID, wepay.getMchId());
+        // 子商户
+        if(!Strings.isNullOrEmpty(wepay.getSubMchId())) {
+        	params.put(WepayField.SUB_MCH_ID, wepay.getSubMchId());
+        }
+        if(!Strings.isNullOrEmpty(wepay.getSubAppId())) {
+        	params.put(WepayField.SUB_APPID, wepay.getSubAppId());
+        }
+    }
 
     /**
      * 构建签名参数
