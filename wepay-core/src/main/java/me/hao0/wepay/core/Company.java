@@ -38,22 +38,23 @@ public class Company extends Component {
 	public ParamResponse componentPay(ParamRequest req) {
 		checkNotNullAndEmpty(req.getOpenid(), "openId");
 		
-		Map<String, String> payParams = new TreeMap<>();
+		Map<String, String> params = new TreeMap<>();
 
         // 业务必需参数
-        put(payParams, WepayField.PARTNER_TRADE_NO, req.getPartnerTradeNo());
-        put(payParams, WepayField.OPEN_ID, req.getOpenid());
-        put(payParams, WepayField.CHECK_NAME, req.getCheckName().name());
-        put(payParams, WepayField.AMOUNT, String.valueOf(req.getAmount()));
-        put(payParams, WepayField.DESC, req.getDesc());
-        put(payParams, WepayField.SPBILL_CREATE_IP, req.getSpbillCreateIp());
+        put(params, WepayField.PARTNER_TRADE_NO, req.getPartnerTradeNo());
+        put(params, WepayField.OPEN_ID, req.getOpenid());
+        put(params, WepayField.CHECK_NAME, req.getCheckName().name());
+        put(params, WepayField.AMOUNT, String.valueOf(req.getAmount()));
+        put(params, WepayField.DESC, req.getDesc());
+        put(params, WepayField.SPBILL_CREATE_IP, req.getSpbillCreateIp());
 
         // 业务可选参数
-        putIfNotEmpty(payParams, WepayField.DEVICE_INFO, req.getDeviceInfo());
-        putIfNotEmpty(payParams, WepayField.RE_USER_NAME, req.getReUserName());
+        putIfNotEmpty(params, WepayField.DEVICE_INFO, req.getDeviceInfo());
+        putIfNotEmpty(params, WepayField.RE_USER_NAME, req.getReUserName());
 		
-        buildQueryParams(payParams);
-		return doHttpsPost(TRANSFERS_URL, payParams, ParamResponse.class);
+        buildConfigCompanyParams(params);
+        buildQueryParams(params);
+		return doHttpsPost(TRANSFERS_URL, params, ParamResponse.class);
 	}
 	
 	/**
@@ -65,10 +66,11 @@ public class Company extends Component {
 	 */
 	public GettransferinfoResponse gettransferinfo(String partnerTradeNo) {
 		checkNotNullAndEmpty(partnerTradeNo, "partnerTradeNo");
-		Map<String, String> payParams = new TreeMap<>();
-		payParams.put("partner_trade_no", partnerTradeNo);
-		buildQueryParams(payParams);
-		return doHttpsPost(GETTRANSFERINFO, payParams, GettransferinfoResponse.class);
+		Map<String, String> params = new TreeMap<>();
+		params.put("partner_trade_no", partnerTradeNo);
+		buildConfigParams(params);
+		buildQueryParams(params);
+		return doHttpsPost(GETTRANSFERINFO, params, GettransferinfoResponse.class);
 	}
 	
 	/**
@@ -78,7 +80,6 @@ public class Company extends Component {
 	 * @date 2019年4月26日 下午4:16:14
 	 */
     private void buildQueryParams(Map<String, String> params) {
-    	buildConfigCompanyParams(params);
         put(params, WepayField.NONCE_STR, RandomStrs.generate(16));
         buildSignParams(params);
     }
