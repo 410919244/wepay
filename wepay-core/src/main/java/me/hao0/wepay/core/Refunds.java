@@ -192,7 +192,7 @@ public final class Refunds extends Component {
             checkNotNullAndEmpty(request.getOutTradeNo(), "transactionId && outTradeNo");
         }
         checkNotNullAndEmpty(request.getOutRefundNo(), "outRefundNo");
-        checkNotNullAndEmpty(request.getOpUserId(), "opUserId");
+//        checkNotNullAndEmpty(request.getOpUserId(), "opUserId");
         Integer totalFee = request.getTotalFee();
         Integer refundFee = request.getRefundFee();
         checkPositive(totalFee, "totalFee");
